@@ -11,13 +11,13 @@ class ConfMaster():
     def __init__(self):
         self.config = {}
 
-    def load_from_json(self, file_path: str) -> None:
+    def load_from_json(self, file_path) -> None:
         try:
             self.config.update(load_json(file_path))
         except Exception as e:
             raise ConfigLoadError(f"Error loading JSON config: {e}")
 
-    def load_from_yaml(self, file_path: str) -> None:
+    def load_from_yaml(self, file_path) -> None:
         try:
             self.config.update(load_yaml(file_path))
         except Exception as e:
@@ -26,7 +26,7 @@ class ConfMaster():
     def load_from_env(self) -> None:
         self.config.update(load_env())
 
-    def get(self, key: str, default: Any=None) -> Any:
+    def get(self, key, default=None) -> Any:
         keys = key.split('.')
         value = self.config
         try:
@@ -36,7 +36,7 @@ class ConfMaster():
         except KeyError:
             return default
 
-    def set(self, key: str, value: Any) -> None:
+    def set(self, key, value) -> None:
         keys = key.split('.')
         d = self.config
 
@@ -53,14 +53,14 @@ class ConfMaster():
         except ValueError as e:
             raise ConfigValidationError(f"Configuration validation error: {e}")
 
-    def save_to_json(self, file_path: str) -> None:
+    def save_to_json(self, file_path) -> None:
         try:
             with open(file_path, 'w') as f:
                 json.dump(self.config, f, indent=4)
         except Exception as e:
             raise Exception(f"Error saving JSON config: {e}")
 
-    def save_to_yaml(self, file_path: str) -> None:
+    def save_to_yaml(self, file_path) -> None:
         try:
             with open(file_path, 'w') as f:
                 yaml.safe_dump(self.config, f, default_flow_style=False)
