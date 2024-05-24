@@ -1,7 +1,7 @@
 import json
 from typing import Any
 
-class PyConfigManager():
+class ConfMaster():
     def __init__(self):
         self.config = {}
 

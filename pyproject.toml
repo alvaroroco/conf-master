@@ -1,18 +1,15 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
-name = "py-config-manager"
-dynamic = ["version"]
-description = ''
+[tool.poetry]
+name = "conf-master"
+version = "0.0.1"
+description = ""
 readme = "README.md"
-requires-python = ">=3.8"
+authors = ["alvaroroco <alvaroroco@gmail.com>"]
 license = "MIT"
 keywords = []
-authors = [
-  { name = "alvaroroco", email = "alvaroroco@gmail.com" },
-]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -24,38 +21,30 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
 
-[project.urls]
-Documentation = "https://github.com/alvaroroco/py-config-manager#readme"
-Issues = "https://github.com/alvaroroco/py-config-manager/issues"
-Source = "https://github.com/alvaroroco/py-config-manager"
+[tool.poetry.dependencies]
+python = ">=3.8"
 
-[tool.hatch.version]
-path = "src/py_config_manager/__about__.py"
-
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/py_config_manager tests}"
+[tool.poetry.urls]
+documentation = "https://github.com/alvaroroco/conf-master#readme"
+issues = "https://github.com/alvaroroco/conf-master/issues"
+source = "https://github.com/alvaroroco/conf-master"
 
 [tool.coverage.run]
-source_pkgs = ["py_config_manager", "tests"]
+source = ["conf_master", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/py_config_manager/__about__.py",
+  "src/conf_master/__about__.py",
 ]
 
 [tool.coverage.paths]
-py_config_manager = ["src/py_config_manager", "*/py-config-manager/src/py_config_manager"]
-tests = ["tests", "*/py-config-manager/tests"]
+source = ["src/conf_master", "*/conf-master/src/conf_master"]
+tests = ["tests", "*/conf-master/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
   "no cov",
-  "if __name__ == .__main__.:",
+  "if __name__ == '__main__':",
   "if TYPE_CHECKING:",
 ]

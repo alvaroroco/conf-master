@@ -1,7 +1,7 @@
-# Py Config Manager
+# Conf Master
 
-[![PyPI - Version](https://img.shields.io/pypi/v/py-config-manager.svg)](https://pypi.org/project/py-config-manager)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/py-config-manager.svg)](https://pypi.org/project/py-config-manager)
+[![PyPI - Version](https://img.shields.io/pypi/v/conf-master.svg)](https://pypi.org/project/conf-master)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/conf-master.svg)](https://pypi.org/project/conf-master)
 
 -----
 
@@ -13,9 +13,9 @@
 ## Installation
 
 ```console
-pip install py-config-manager
+pip install conf-master
 ```
 
 ## License
 
-`py-config-manager` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+`conf-master` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
