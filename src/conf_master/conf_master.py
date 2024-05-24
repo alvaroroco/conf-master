@@ -1,4 +1,5 @@
 import json
+import yaml
 from typing import Any
 
 class ConfMaster():
@@ -11,6 +12,13 @@ class ConfMaster():
                 self.config.update(json.load(f))
         except Exception as e:
             raise Exception(f"Error loading JSON config: {e}")
+
+    def load_from_yaml(self, file_path: str) -> None:
+        try:
+            with open(file_path, 'r') as f:
+                self.config.update(yaml.safe_load(f))
+        except Exception as e:
+            raise Exception(f"Error loading YAML config: {e}")
 
     def get(self, key: str, default: Any=None) -> Any:
         keys = key.split('.')
@@ -39,3 +47,10 @@ class ConfMaster():
                 json.dump(self.config, f, indent=4)
         except Exception as e:
             raise Exception(f"Error saving JSON config: {e}")
+
+    def save_to_yaml(self, file_path: str) -> None:
+        try:
+            with open(file_path, 'w') as f:
+                yaml.safe_dump(self.config, f, default_flow_style=False)
+        except Exception as e:
+            raise Exception(f"Error saving YAML config: {e}")
