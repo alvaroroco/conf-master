@@ -8,6 +8,10 @@ class ConfigLoadError(ConfigError):
     pass
 
 
+class ConfigSaveError(ConfigError):
+    """Raised when there is an error saving the configuration."""
+    pass
+
 class ConfigValidationError(ConfigError):
     """Raised when the configuration validation fails."""
     pass
