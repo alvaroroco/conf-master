@@ -1,5 +1,6 @@
 import json
 import yaml
+import os
 from typing import Any
 
 class ConfMaster():
@@ -19,6 +20,10 @@ class ConfMaster():
                 self.config.update(yaml.safe_load(f))
         except Exception as e:
             raise Exception(f"Error loading YAML config: {e}")
+
+    def load_from_env(self) -> None:
+        for key, value in os.environ.items():
+            self.config[key] = value
 
     def get(self, key: str, default: Any=None) -> Any:
         keys = key.split('.')
