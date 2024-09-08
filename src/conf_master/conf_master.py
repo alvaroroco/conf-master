@@ -1,12 +1,12 @@
 from typing import Any
 
 from .exceptions import ConfigLoadError, ConfigSaveError, ConfigValidationError
-from .loaders import load_env, load_json, load_toml, load_yaml
-from .savers import save_json, save_toml, save_yaml
+from .loaders import load_env, load_ini, load_json, load_toml, load_yaml
+from .savers import save_ini, save_json, save_toml, save_yaml
 from .validators import validate_config
 
 
-class ConfMaster():
+class ConfMaster:
     def __init__(self):
         self.config = {}
 
@@ -31,8 +31,14 @@ class ConfMaster():
         except Exception as e:
             raise ConfigLoadError(f"Error loading TOML config: {e}")
 
+    def load_from_ini(self, file_path):
+        try:
+            self.config.update(load_ini(file_path))
+        except Exception as e:
+            raise ConfigLoadError(f"Error loading ini config: {e}")
+
     def get(self, key, default=None) -> Any:
-        keys = key.split('.')
+        keys = key.split(".")
         value = self.config
         try:
             for k in keys:
@@ -42,7 +48,7 @@ class ConfMaster():
             return default
 
     def set(self, key, value):
-        keys = key.split('.')
+        keys = key.split(".")
         d = self.config
 
         for k in keys[:-1]:
@@ -75,3 +81,9 @@ class ConfMaster():
             save_toml(file_path, self.config)
         except Exception as e:
             raise ConfigSaveError(f"Error saving TOML config: {e}")
+
+    def save_to_ini(self, file_path):
+        try:
+            save_ini(file_path, self.config)
+        except Exception as e:
+            raise ConfigSaveError(f"Error saving ini config: {e}")

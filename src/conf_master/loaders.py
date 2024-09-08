@@ -2,6 +2,7 @@ import json
 import yaml
 import os
 import toml
+import configparser
 
 
 def load_json(file_path):
@@ -18,3 +19,8 @@ def load_env():
 def load_toml(file_path):
     with open(file_path, 'r') as f:
         return toml.load(f)
+
+def load_ini(file_path):
+    config = configparser.ConfigParser()
+    config.read(file_path)
+    return {section: dict(config[section]) for section in config.sections()}

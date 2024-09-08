@@ -7,7 +7,6 @@ from fixtures.fixture_data import config_data, schema  # noqa: F401
 def conf_master():
     return ConfMaster()
 
-
 @pytest.fixture
 def test_files(tmp_path):
     test_json = tmp_path / "test_config.json"
