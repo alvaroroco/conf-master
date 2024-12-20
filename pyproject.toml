@@ -1,49 +1,20 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
+[project]
 name = "conf-master"
-version = "2.0.0"
-description = ""
+version = "3.0.0"
+description = "A library to manage configuration files"
 readme = "README.md"
-authors = ["alvaroroco <alvaroroco@gmail.com>"]
 license = "MIT"
-keywords = []
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-]
+authors = [{ name = "alvaroroco", email = "alvaroroco@gmail.com" }]
+requires-python = ">=3.11"
+dependencies = ["pyyaml>=6.0.2", "toml>=0.10.2"]
 
-[tool.poetry.dependencies]
-python = ">=3.8"
-pyyaml = "^6.0.2"
-toml = "^0.10.2"
+[dependency-groups]
+dev = ["pytest>=8.3.4", "ruff>=0.8.4"]
 
-[tool.poetry.urls]
-documentation = "https://github.com/alvaroroco/conf-master#readme"
-issues = "https://github.com/alvaroroco/conf-master/issues"
-source = "https://github.com/alvaroroco/conf-master"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.2"
+[tool.ruff.lint]
+extend-per-file-ignores = { "__init__.py" = ["F401"] }
 
-[tool.coverage.run]
-source = ["conf_master", "tests"]
-branch = true
-parallel = true
-omit = ["src/conf_master/__about__.py"]
-
-[tool.coverage.paths]
-source = ["src/conf_master", "*/conf-master/src/conf_master"]
-tests = ["tests", "*/conf-master/tests"]
-
-[tool.coverage.report]
-exclude_lines = ["no cov", "if __name__ == '__main__':", "if TYPE_CHECKING:"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
